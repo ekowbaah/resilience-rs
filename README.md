@@ -1,18 +1,18 @@
 # resilience-rs
 
-Small, dependency-light resilience primitives for Rust services. The first release provides bounded exponential retry and an explicit circuit-breaker state machine.
+Synchronous resilience primitives for small Rust services and command-line tools.
+
+The crate includes retries with bounded exponential backoff, a circuit breaker, a blocking bulkhead, a deterministic token-bucket rate limiter, and cooperative cancellation tokens. It has no async runtime dependency.
 
 ```rust
 use resilience_rs::{retry, RetryPolicy};
+
 let value = retry(RetryPolicy::default(), |_| Ok::<_, ()>(42))?;
 ```
 
-## Engineering goals
+```sh
+cargo test
+cargo clippy --all-targets -- -D warnings
+```
 
-- Predictable behavior and inspectable state
-- No hidden runtime or global executor
-- Tests for transitions and retry limits
-- Stable, documented API before `1.0`
-
-Run `cargo test`. See [SECURITY.md](SECURITY.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
-
+The APIs are intentionally small and the state transitions are covered by tests.
