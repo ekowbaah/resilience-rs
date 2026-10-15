@@ -1,0 +1,11 @@
+[package]
+name = "resilience-rs"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "Dependency-light resilience policies for Rust services"
+
+[lib]
+name = "resilience_rs"
+path = "src/lib.rs"
+
